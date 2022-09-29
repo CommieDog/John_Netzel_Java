@@ -11,13 +11,14 @@ public class ConverterApplication {
         ConverterIf converterIf = new ConverterIf();
         ConverterSwitch converterSwitch = new ConverterSwitch();
 
-        int testMonth1 = RNG.nextInt(NUM_MONTHS);
-        int testMonth2 = RNG.nextInt(NUM_MONTHS);
-        int testMonth3 = RNG.nextInt(NUM_MONTHS);
+        // Remember that nexInt(range) returns start at 0 so need to be offset by 1
+        int testMonth1 = RNG.nextInt(NUM_MONTHS) + 1;
+        int testMonth2 = RNG.nextInt(NUM_MONTHS) + 1;
+        int testMonth3 = RNG.nextInt(NUM_MONTHS) + 1;
 
-        int testDayOfWeek1 = RNG.nextInt(NUM_DAYS_IN_WEEK);
-        int testDayOfWeek2 = RNG.nextInt(NUM_DAYS_IN_WEEK);
-        int testDayOfWeek3 = RNG.nextInt(NUM_DAYS_IN_WEEK);
+        int testDayOfWeek1 = RNG.nextInt(NUM_DAYS_IN_WEEK) + 1;
+        int testDayOfWeek2 = RNG.nextInt(NUM_DAYS_IN_WEEK) + 1;
+        int testDayOfWeek3 = RNG.nextInt(NUM_DAYS_IN_WEEK) + 1;
 
         System.out.println("Test month values are: " + testMonth1 + ", " + testMonth2 + ", " + testMonth3);
         System.out.println("Test day of week values are: " + testDayOfWeek1 + ", " + testDayOfWeek2 + ", " +
