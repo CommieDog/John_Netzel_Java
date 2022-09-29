@@ -8,8 +8,8 @@ public class ConverterApplication {
     private static final Random RNG = new Random();
 
     public static void main(String[] args) {
-        ConverterIf converterIf = new ConverterIf();
-        ConverterSwitch converterSwitch = new ConverterSwitch();
+        Converter converterIf = new ConverterIf();
+        Converter converterSwitch = new ConverterSwitch();
 
         // Remember that nexInt(range) returns start at 0 so need to be offset by 1
         int testMonth1 = RNG.nextInt(NUM_MONTHS) + 1;

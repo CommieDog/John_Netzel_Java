@@ -1,6 +1,7 @@
 package com.company;
 
-public class ConverterIf {
+public class ConverterIf implements Converter {
+    @Override
     public String convertMonth(int monthNumber) {
         if(monthNumber == 1) {
             return "January";
@@ -41,6 +42,7 @@ public class ConverterIf {
         return "Error: convertMonth input " + monthNumber + " is out of range";
     }
 
+    @Override
     public String convertDay(int dayNumber) {
         if(dayNumber == 1) {
             return "Sunday";

@@ -1,6 +1,7 @@
 package com.company;
 
-public class ConverterSwitch {
+public class ConverterSwitch implements Converter {
+    @Override
     public String convertMonth(int monthNumber) {
         switch(monthNumber) {
             case 1:
@@ -32,6 +33,7 @@ public class ConverterSwitch {
         }
     }
 
+    @Override
     public String convertDay(int dayNumber) {
         switch(dayNumber) {
             case 1:
