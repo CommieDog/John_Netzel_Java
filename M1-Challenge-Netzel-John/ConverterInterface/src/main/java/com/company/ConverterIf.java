@@ -3,68 +3,76 @@ package com.company;
 public class ConverterIf implements Converter {
     @Override
     public String convertMonth(int monthNumber) {
+        String conversion;
         if(monthNumber == 1) {
-            return "January";
+            conversion = "January";
         }
-        if(monthNumber == 2) {
-            return "February";
+        else if(monthNumber == 2) {
+            conversion = "February";
         }
-        if(monthNumber == 3) {
-            return "March";
+        else if(monthNumber == 3) {
+            conversion = "March";
         }
-        if(monthNumber == 4) {
-            return "April";
+        else if(monthNumber == 4) {
+            conversion = "April";
         }
-        if(monthNumber == 5) {
-            return "May";
+        else if(monthNumber == 5) {
+            conversion = "May";
         }
-        if(monthNumber == 6) {
-            return "June";
+        else if(monthNumber == 6) {
+            conversion = "June";
         }
-        if(monthNumber == 7) {
-            return "July";
+        else if(monthNumber == 7) {
+            conversion = "July";
         }
-        if(monthNumber == 8) {
-            return "August";
+        else if(monthNumber == 8) {
+            conversion = "August";
         }
-        if(monthNumber == 9) {
-            return "September";
+        else if(monthNumber == 9) {
+            conversion = "September";
         }
-        if(monthNumber == 10) {
-            return "October";
+        else if(monthNumber == 10) {
+            conversion = "October";
         }
-        if(monthNumber == 11) {
-            return "November";
+        else if(monthNumber == 11) {
+            conversion = "November";
         }
-        if(monthNumber == 12) {
-            return "December";
+        else if(monthNumber == 12) {
+            conversion = "December";
         }
-        return "Error: convertMonth input " + monthNumber + " is out of range";
+        else {
+            conversion = "Error: convertMonth input " + monthNumber + " is out of range";
+        }
+        return conversion;
     }
 
     @Override
     public String convertDay(int dayNumber) {
+        String conversion;
         if(dayNumber == 1) {
-            return "Sunday";
+            conversion = "Sunday";
         }
-        if(dayNumber == 2) {
-            return "Monday";
+        else if(dayNumber == 2) {
+            conversion =  "Monday";
         }
-        if(dayNumber == 3) {
-            return "Tuesday";
+        else if(dayNumber == 3) {
+            conversion =  "Tuesday";
         }
-        if(dayNumber == 4) {
-            return "Wednesday";
+        else if(dayNumber == 4) {
+            conversion =  "Wednesday";
         }
-        if(dayNumber == 5) {
-            return "Thursday";
+        else if(dayNumber == 5) {
+            conversion =  "Thursday";
         }
-        if(dayNumber == 6) {
-            return "Friday";
+        else if(dayNumber == 6) {
+            conversion =  "Friday";
         }
-        if(dayNumber == 7) {
-            return "Saturday";
+        else if(dayNumber == 7) {
+            conversion =  "Saturday";
         }
-        return "Error: convertDay input " + dayNumber + " is out of range";
+        else {
+            conversion = "Error: convertDay input " + dayNumber + " is out of range";
+        }
+        return conversion;
     }
 }
