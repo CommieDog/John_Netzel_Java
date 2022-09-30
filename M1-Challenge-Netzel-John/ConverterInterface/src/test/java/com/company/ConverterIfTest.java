@@ -32,6 +32,21 @@ public class ConverterIfTest {
     }
 
     @Test
+    public void shouldNotConvertNumberToMonthIfOutOfBounds() {
+        // Arrange
+        String expectedValue1 = "Error: convertMonth input 0 is out of range";
+        String expectedValue2 = "Error: convertMonth input 13 is out of range";
+
+        // Act
+        String actualValue1 = converter.convertMonth(0);
+        String actualValue2 = converter.convertMonth(13);
+
+        // Assert
+        assertEquals(expectedValue1, actualValue1);
+        assertEquals(expectedValue2, actualValue2);
+    }
+
+    @Test
     public void shouldConvertNumberToDay() {
         // Arrange
         String expectedValue1 = "Sunday";
@@ -47,5 +62,20 @@ public class ConverterIfTest {
         assertEquals(expectedValue1, actualValue1);
         assertEquals(expectedValue2, actualValue2);
         assertEquals(expectedValue3, actualValue3);
+    }
+
+    @Test
+    public void shouldNotConvertNumberToDayIfOutOfBounds() {
+        // Arrange
+        String expectedValue1 = "Error: convertDay input 0 is out of range";
+        String expectedValue2 = "Error: convertDay input 8 is out of range";
+
+        // Act
+        String actualValue1 = converter.convertDay(0);
+        String actualValue2 = converter.convertDay(8);
+
+        // Assert
+        assertEquals(expectedValue1, actualValue1);
+        assertEquals(expectedValue2, actualValue2);
     }
 }
