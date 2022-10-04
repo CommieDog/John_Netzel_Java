@@ -82,6 +82,8 @@ public abstract class Character {
     }
 
     public void attackCharacter(Character target) {
-
+        int damageDealt = Math.round((getStrength() + getAttackPower()) / 10.0f); // Used float in divisor so rounding
+                // result is int
+        target.setHealth(target.getHealth() - damageDealt);
     }
 }

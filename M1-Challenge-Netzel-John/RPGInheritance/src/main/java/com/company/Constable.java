@@ -8,6 +8,7 @@ public class Constable extends Character {
     }
 
     public void arrest(Character target) {
-
+        // May want to do a check of the constable's jurisdiction against the current location
+        target.setArrested(true);
     }
 }
