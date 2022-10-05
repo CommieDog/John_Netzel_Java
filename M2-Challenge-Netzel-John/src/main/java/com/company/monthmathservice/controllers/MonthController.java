@@ -1,5 +1,6 @@
-package com.company.monthmathservice.controller;
+package com.company.monthmathservice.controllers;
 
+import com.company.monthmathservice.models.Month;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -7,12 +8,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class MonthController {
     @GetMapping(value = "/month/{monthNumber}")
-    public String getMonthByNumber(@PathVariable int monthNumber) {
-        return "Month by number";
+    public Month getMonthByNumber(@PathVariable int monthNumber) {
+        return new Month(1);
     }
 
     @GetMapping(value = "/randomMonth")
-    public String getRandomMonth() {
-        return "Random month here";
+    public Month getRandomMonth() {
+        return new Month(1);
     }
 }
