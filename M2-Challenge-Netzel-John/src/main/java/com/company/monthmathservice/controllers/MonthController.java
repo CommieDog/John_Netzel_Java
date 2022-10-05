@@ -14,6 +14,6 @@ public class MonthController {
 
     @GetMapping(value = "/randomMonth")
     public Month getRandomMonth() {
-        return new Month(1);
+        return new Month(2);
     }
 }
