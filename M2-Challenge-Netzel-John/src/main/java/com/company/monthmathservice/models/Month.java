@@ -9,7 +9,8 @@ public class Month {
     private int number;
     private String name;
 
-    public Month(int number) {
+    // Exception must be thrown up to MonthController to be properly handled by Spring
+    public Month(int number) throws ArrayIndexOutOfBoundsException {
         this.number = number;
         this.name = MONTH_NAMES[number - 1]; // Remember that array indexes start at 0;
     }

@@ -11,6 +11,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @RunWith(SpringRunner.class)
@@ -32,8 +33,10 @@ public class MonthControllerTests {
 	@Test
 	public void shouldFailGetMonthByNumberWithNumberOutOfBounds() throws Exception {
 		mockMvc.perform(get("/month/{monthNumber}", 0))
+				.andDo(print())
 				.andExpect(status().isUnprocessableEntity());
 		mockMvc.perform(get("/month/{monthNumber}", 13))
+				.andDo(print())
 				.andExpect(status().isUnprocessableEntity());
 	}
 
