@@ -10,6 +10,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
+import static com.company.monthmathservice.models.MathSolution.*;
 import static org.junit.Assert.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -32,6 +33,49 @@ public class MathControllerTest {
 
         mockMvc.perform(post("/add").content(requestBody).contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
+                .andExpect(jsonPath("$.operation").value(ADD_OPERATION))
                 .andExpect(jsonPath("$.answer").value(3.5));
+    }
+
+    @Test
+    public void shouldSubtractTwoNumbers() throws Exception {
+        MathSolution request = new MathSolution();
+        request.setOperand1(1.0);
+        request.setOperand2(2.5);
+
+        String requestBody = mapper.writeValueAsString(request);
+
+        mockMvc.perform(post("/subtract").content(requestBody).contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.operation").value(SUBTRACT_OPERATION))
+                .andExpect(jsonPath("$.answer").value(-1.5));
+    }
+
+    @Test
+    public void shouldMultiplyTwoNumbers() throws Exception {
+        MathSolution request = new MathSolution();
+        request.setOperand1(1.0);
+        request.setOperand2(2.5);
+
+        String requestBody = mapper.writeValueAsString(request);
+
+        mockMvc.perform(post("/multiply").content(requestBody).contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.operation").value(MULTIPLY_OPERATION))
+                .andExpect(jsonPath("$.answer").value(2.5));
+    }
+
+    @Test
+    public void shouldDivideTwoNumbers() throws Exception {
+        MathSolution request = new MathSolution();
+        request.setOperand1(1.0);
+        request.setOperand2(2.5);
+
+        String requestBody = mapper.writeValueAsString(request);
+
+        mockMvc.perform(post("/divide").content(requestBody).contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.operation").value(DIVIDE_OPERATION))
+                .andExpect(jsonPath("$.answer").value(0.4));
     }
 }
