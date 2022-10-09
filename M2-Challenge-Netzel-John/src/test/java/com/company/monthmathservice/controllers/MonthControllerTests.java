@@ -1,6 +1,5 @@
-package com.company.monthmathservice;
+package com.company.monthmathservice.controllers;
 
-import com.company.monthmathservice.controllers.MonthController;
 import com.company.monthmathservice.models.Month;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;

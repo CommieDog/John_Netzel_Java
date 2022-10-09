@@ -7,32 +7,48 @@ public class MathSolution {
     private double answer;
 
     public MathSolution() {
+        this.operation = "";
     }
 
-    public MathSolution(double operand1, double operand2, String operation) {
+    public MathSolution(double operand1, double operand2) {
         this.operand1 = operand1;
         this.operand2 = operand2;
-        this.operation = operation;
-        this.answer = calculateAnswer();
+        this.operation = "";
     }
 
     public double getOperand1() {
         return operand1;
     }
 
+    public void setOperand1(double operand1) {
+        this.operand1 = operand1;
+    }
+
     public double getOperand2() {
         return operand2;
+    }
+
+    public void setOperand2(double operand2) {
+        this.operand2 = operand2;
     }
 
     public String getOperation() {
         return operation;
     }
 
+    public void setOperation(String operation) {
+        this.operation = operation;
+    }
+
     public double getAnswer() {
         return answer;
     }
 
-    private double calculateAnswer() {
-        return 0.0;
+    public void setAnswer(double answer) {
+        this.answer = answer;
+    }
+
+    public void calculateAnswer() {
+        answer = 0.0;
     }
 }

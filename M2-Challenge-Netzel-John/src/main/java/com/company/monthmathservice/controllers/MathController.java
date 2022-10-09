@@ -6,22 +6,24 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 public class MathController {
     @PostMapping(value = "/add")
-    public MathSolution addNumbers(@RequestBody double operand1, double operand2) {
-        return new MathSolution(operand1, operand2, "add");
+    public MathSolution addNumbers(@RequestBody MathSolution body) {
+        body.setOperation("add");
+        body.calculateAnswer();
+        return body;
     }
 
     @PostMapping(value = "/subtract")
-    public MathSolution subtractNumbers(@RequestBody double operand1, double operand2) {
-        return new MathSolution(operand1, operand2, "subtract");
+    public MathSolution subtractNumbers(@RequestBody MathSolution body) {
+        return body;
     }
 
     @PostMapping(value = "/multiply")
-    public MathSolution multiplyNumbers(@RequestBody double operand1, double operand2) {
-        return new MathSolution(operand1, operand2, "multiply");
+    public MathSolution multiplyNumbers(@RequestBody MathSolution body) {
+        return body;
     }
 
     @PostMapping(value = "/divide")
-    public MathSolution divideNumbers(@RequestBody double operand1, double operand2) {
-        return new MathSolution(operand1, operand2, "divide");
+    public MathSolution divideNumbers(@RequestBody MathSolution body) {
+        return body;
     }
 }
