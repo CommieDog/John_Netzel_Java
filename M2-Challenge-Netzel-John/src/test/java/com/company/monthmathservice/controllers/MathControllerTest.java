@@ -78,4 +78,38 @@ public class MathControllerTest {
                 .andExpect(jsonPath("$.operation").value(DIVIDE_OPERATION))
                 .andExpect(jsonPath("$.answer").value(0.4));
     }
+
+    @Test
+    public void shouldFailIfOperand1Undefined() throws Exception {
+        MathSolution request = new MathSolution();
+        request.setOperand2(10.0);
+
+        String requestBody = mapper.writeValueAsString(request);
+
+        mockMvc.perform(post("/add").content(requestBody).contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isUnprocessableEntity());
+    }
+
+    @Test
+    public void shouldFailIfOperand2Undefined() throws Exception {
+        MathSolution request = new MathSolution();
+        request.setOperand1(10.0);
+
+        String requestBody = mapper.writeValueAsString(request);
+
+        mockMvc.perform(post("/add").content(requestBody).contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isUnprocessableEntity());
+    }
+
+    @Test
+    public void shouldFailIfDividingByZero() throws Exception {
+        MathSolution request = new MathSolution();
+        request.setOperand1(10.0);
+        request.setOperand2(10.0);
+
+        String requestBody = mapper.writeValueAsString(request);
+
+        mockMvc.perform(post("/divide").content(requestBody).contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isUnprocessableEntity());
+    }
 }
