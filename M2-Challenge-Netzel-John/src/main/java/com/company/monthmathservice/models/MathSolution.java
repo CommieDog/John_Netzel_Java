@@ -1,5 +1,7 @@
 package com.company.monthmathservice.models;
 
+import com.company.monthmathservice.controllers.UndefinedOperandException;
+
 public class MathSolution {
     public static final String ADD_OPERATION = "add";
     public static final String SUBTRACT_OPERATION = "subtract";
@@ -55,6 +57,9 @@ public class MathSolution {
     }
 
     public void calculateAnswer() {
+        if(operand1 == null || operand2 == null) {
+            throw new UndefinedOperandException();
+        }
         switch (operation) {
             case ADD_OPERATION:
                 answer = operand1 + operand2;
