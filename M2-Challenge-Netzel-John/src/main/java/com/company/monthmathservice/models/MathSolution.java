@@ -6,34 +6,35 @@ public class MathSolution {
     public static final String MULTIPLY_OPERATION = "multiply";
     public static final String DIVIDE_OPERATION = "divide";
 
-    private double operand1;
-    private double operand2;
+    // Used Integer wrapper class to allow for null values
+    private Integer operand1;
+    private Integer operand2;
     private String operation;
-    private double answer;
+    private Integer answer;
 
     public MathSolution() {
         this.operation = "";
     }
 
-    public MathSolution(double operand1, double operand2) {
+    public MathSolution(Integer operand1, Integer operand2) {
         this.operand1 = operand1;
         this.operand2 = operand2;
         this.operation = "";
     }
 
-    public double getOperand1() {
+    public Integer getOperand1() {
         return operand1;
     }
 
-    public void setOperand1(double operand1) {
+    public void setOperand1(Integer operand1) {
         this.operand1 = operand1;
     }
 
-    public double getOperand2() {
+    public Integer getOperand2() {
         return operand2;
     }
 
-    public void setOperand2(double operand2) {
+    public void setOperand2(Integer operand2) {
         this.operand2 = operand2;
     }
 
@@ -45,11 +46,11 @@ public class MathSolution {
         this.operation = operation;
     }
 
-    public double getAnswer() {
+    public Integer getAnswer() {
         return answer;
     }
 
-    public void setAnswer(double answer) {
+    public void setAnswer(Integer answer) {
         this.answer = answer;
     }
 

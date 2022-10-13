@@ -26,63 +26,63 @@ public class MathControllerTest {
     @Test
     public void shouldAddTwoNumbers() throws Exception {
         MathSolution request = new MathSolution();
-        request.setOperand1(1.0);
-        request.setOperand2(2.5);
+        request.setOperand1(1);
+        request.setOperand2(3);
 
         String requestBody = mapper.writeValueAsString(request);
 
         mockMvc.perform(post("/add").content(requestBody).contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.operation").value(ADD_OPERATION))
-                .andExpect(jsonPath("$.answer").value(3.5));
+                .andExpect(jsonPath("$.answer").value(4));
     }
 
     @Test
     public void shouldSubtractTwoNumbers() throws Exception {
         MathSolution request = new MathSolution();
-        request.setOperand1(1.0);
-        request.setOperand2(2.5);
+        request.setOperand1(1);
+        request.setOperand2(-3);
 
         String requestBody = mapper.writeValueAsString(request);
 
         mockMvc.perform(post("/subtract").content(requestBody).contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.operation").value(SUBTRACT_OPERATION))
-                .andExpect(jsonPath("$.answer").value(-1.5));
+                .andExpect(jsonPath("$.answer").value(-2));
     }
 
     @Test
     public void shouldMultiplyTwoNumbers() throws Exception {
         MathSolution request = new MathSolution();
-        request.setOperand1(1.0);
-        request.setOperand2(2.5);
+        request.setOperand1(1);
+        request.setOperand2(3);
 
         String requestBody = mapper.writeValueAsString(request);
 
         mockMvc.perform(post("/multiply").content(requestBody).contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.operation").value(MULTIPLY_OPERATION))
-                .andExpect(jsonPath("$.answer").value(2.5));
+                .andExpect(jsonPath("$.answer").value(3));
     }
 
     @Test
     public void shouldDivideTwoNumbers() throws Exception {
         MathSolution request = new MathSolution();
-        request.setOperand1(1.0);
-        request.setOperand2(2.5);
+        request.setOperand1(1);
+        request.setOperand2(3);
 
         String requestBody = mapper.writeValueAsString(request);
 
         mockMvc.perform(post("/divide").content(requestBody).contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.operation").value(DIVIDE_OPERATION))
-                .andExpect(jsonPath("$.answer").value(0.4));
+                .andExpect(jsonPath("$.answer").value(0)); // Remember that we are doing integer division
     }
 
     @Test
     public void shouldFailIfOperand1Undefined() throws Exception {
         MathSolution request = new MathSolution();
-        request.setOperand2(10.0);
+        request.setOperand2(10);
 
         String requestBody = mapper.writeValueAsString(request);
 
@@ -93,19 +93,19 @@ public class MathControllerTest {
     @Test
     public void shouldFailIfOperand2Undefined() throws Exception {
         MathSolution request = new MathSolution();
-        request.setOperand1(10.0);
+        request.setOperand1(10);
 
         String requestBody = mapper.writeValueAsString(request);
 
-        mockMvc.perform(post("/add").content(requestBody).contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(post("/subtract").content(requestBody).contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isUnprocessableEntity());
     }
 
     @Test
     public void shouldFailIfDividingByZero() throws Exception {
         MathSolution request = new MathSolution();
-        request.setOperand1(10.0);
-        request.setOperand2(10.0);
+        request.setOperand1(10);
+        request.setOperand2(0);
 
         String requestBody = mapper.writeValueAsString(request);
 
