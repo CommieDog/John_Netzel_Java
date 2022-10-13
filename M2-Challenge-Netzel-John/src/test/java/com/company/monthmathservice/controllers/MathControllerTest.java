@@ -41,7 +41,7 @@ public class MathControllerTest {
     public void shouldSubtractTwoNumbers() throws Exception {
         MathSolution request = new MathSolution();
         request.setOperand1(1);
-        request.setOperand2(-3);
+        request.setOperand2(3);
 
         String requestBody = mapper.writeValueAsString(request);
 

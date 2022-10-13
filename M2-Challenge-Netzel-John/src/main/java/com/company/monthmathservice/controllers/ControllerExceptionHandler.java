@@ -14,4 +14,16 @@ public class ControllerExceptionHandler {
         return new ResponseEntity<>(exception, HttpStatus.UNPROCESSABLE_ENTITY);
     }
 
+    @ExceptionHandler(value = UndefinedOperandException.class)
+    @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
+    public ResponseEntity<?> handleMissingOperandException(UndefinedOperandException exception) {
+        return new ResponseEntity<>(exception, HttpStatus.UNPROCESSABLE_ENTITY);
+    }
+
+    @ExceptionHandler(value = ArithmeticException.class)
+    @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
+    public ResponseEntity<?> handleDivideByZeroException(ArithmeticException exception) {
+        return new ResponseEntity<>(exception, HttpStatus.UNPROCESSABLE_ENTITY);
+    }
+
 }
