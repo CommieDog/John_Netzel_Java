@@ -11,7 +11,7 @@
 	<groupId>com.company</groupId>
 	<artifactId>gamestore-service-registry</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>gamestore-service-registry</name>
+	<name>registry</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>1.8</java.version>
