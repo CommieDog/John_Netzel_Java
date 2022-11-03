@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/M5-Challenge-Netzel-John.iml" filepath="$PROJECT_DIR$/.idea/M5-Challenge-Netzel-John.iml" />
+      <module fileurl="file://$PROJECT_DIR$/gamestore/gamestore.iml" filepath="$PROJECT_DIR$/gamestore/gamestore.iml" />
+      <module fileurl="file://$PROJECT_DIR$/gamestore-catalog/gamestore-catalog.iml" filepath="$PROJECT_DIR$/gamestore-catalog/gamestore-catalog.iml" />
+      <module fileurl="file://$PROJECT_DIR$/gamestore-invoicing/gamestore-invoicing.iml" filepath="$PROJECT_DIR$/gamestore-invoicing/gamestore-invoicing.iml" />
+      <module fileurl="file://$PROJECT_DIR$/registry/gamestore-service-registry.iml" filepath="$PROJECT_DIR$/registry/gamestore-service-registry.iml" />
+    </modules>
+  </component>
+</project>
