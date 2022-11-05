@@ -59,10 +59,9 @@ public class GameStoreServiceLayer {
 
     public GameViewModel getGame(long id) {
         Optional<Game> game = gameRepo.findById(id);
-        if (game == null)
-            return null;
-        else
+        if (game.isPresent())
             return buildGameViewModel(game.get());
+        throw new IllegalArgumentException("No game found with id=" + id);
     }
 
     public void updateGame(GameViewModel gameViewModel) {
@@ -156,10 +155,9 @@ public class GameStoreServiceLayer {
 
     public ConsoleViewModel getConsoleById(long id) {
         Optional<Console> console = consoleRepo.findById(id);
-        if (console == null)
-            return null;
-        else
+        if (console.isPresent())
             return buildConsoleViewModel(console.get());
+        throw new IllegalArgumentException("No game found with id=" + id);
     }
 
     public void updateConsole(ConsoleViewModel consoleViewModel) {
@@ -232,10 +230,9 @@ public class GameStoreServiceLayer {
 
     public TShirtViewModel getTShirt(long id) {
         Optional<TShirt> tShirt = tShirtRepo.findById(id);
-        if (tShirt == null)
-            return null;
-        else
+        if (tShirt.isPresent())
             return buildTShirtViewModel(tShirt.get());
+        throw new IllegalArgumentException("No t-shirt found with id=" + id);
     }
 
     public void updateTShirt(TShirtViewModel tShirtViewModel) {
