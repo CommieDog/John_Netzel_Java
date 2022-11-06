@@ -1,8 +1,12 @@
 package com.company.gamestoreinvoicing.service;
 
 import com.company.gamestoreinvoicing.model.*;
+import com.company.gamestoreinvoicing.repository.InvoiceRepository;
+import com.company.gamestoreinvoicing.repository.ProcessingFeeRepository;
+import com.company.gamestoreinvoicing.repository.TaxRepository;
 import com.company.gamestoreinvoicing.viewModel.InvoiceViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
@@ -20,19 +24,19 @@ public class GameStoreServiceLayer {
     private final String CONSOLE_ITEM_TYPE = "Console";
     private final String TSHIRT_ITEM_TYPE = "T-Shirt";
 
-    GameRepository gameRepo;
-    ConsoleRepository consoleRepo;
-    TShirtRepository tShirtRepo;
+    JpaRepository<Game, Long> gameRepo;
+    JpaRepository<Console, Long> consoleRepo;
+    JpaRepository<TShirt, Long> tShirtRepo;
     InvoiceRepository invoiceRepo;
     TaxRepository taxRepo;
     ProcessingFeeRepository processingFeeRepo;
 
     @Autowired
-    public GameStoreServiceLayer(GameRepository gameRepo, ConsoleRepository consoleRepo, TShirtRepository tShirtRepo,
+    public GameStoreServiceLayer(
                                  InvoiceRepository invoiceRepo, TaxRepository taxRepo, ProcessingFeeRepository processingFeeRepo) {
-        this.gameRepo = gameRepo;
-        this.consoleRepo = consoleRepo;
-        this.tShirtRepo = tShirtRepo;
+        this.gameRepo = null;
+        this.consoleRepo = null;
+        this.tShirtRepo = null;
         this.invoiceRepo = invoiceRepo;
         this.taxRepo = taxRepo;
         this.processingFeeRepo = processingFeeRepo;
