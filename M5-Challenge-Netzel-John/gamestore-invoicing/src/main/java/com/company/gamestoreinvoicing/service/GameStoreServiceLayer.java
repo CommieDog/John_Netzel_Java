@@ -1,10 +1,14 @@
 package com.company.gamestoreinvoicing.service;
 
+import com.company.gamestoreinvoicing.controller.CatalogFeignClient;
 import com.company.gamestoreinvoicing.model.*;
 import com.company.gamestoreinvoicing.repository.InvoiceRepository;
 import com.company.gamestoreinvoicing.repository.ProcessingFeeRepository;
 import com.company.gamestoreinvoicing.repository.TaxRepository;
+import com.company.gamestoreinvoicing.viewModel.ConsoleViewModel;
+import com.company.gamestoreinvoicing.viewModel.GameViewModel;
 import com.company.gamestoreinvoicing.viewModel.InvoiceViewModel;
+import com.company.gamestoreinvoicing.viewModel.TShirtViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Component;
@@ -24,9 +28,8 @@ public class GameStoreServiceLayer {
     private final String CONSOLE_ITEM_TYPE = "Console";
     private final String TSHIRT_ITEM_TYPE = "T-Shirt";
 
-    JpaRepository<Game, Long> gameRepo;
-    JpaRepository<Console, Long> consoleRepo;
-    JpaRepository<TShirt, Long> tShirtRepo;
+    @Autowired
+    CatalogFeignClient feignClient;
     InvoiceRepository invoiceRepo;
     TaxRepository taxRepo;
     ProcessingFeeRepository processingFeeRepo;
@@ -34,9 +37,9 @@ public class GameStoreServiceLayer {
     @Autowired
     public GameStoreServiceLayer(
                                  InvoiceRepository invoiceRepo, TaxRepository taxRepo, ProcessingFeeRepository processingFeeRepo) {
-        this.gameRepo = null;
+        /*this.gameRepo = null;
         this.consoleRepo = null;
-        this.tShirtRepo = null;
+        this.tShirtRepo = null;*/
         this.invoiceRepo = invoiceRepo;
         this.taxRepo = taxRepo;
         this.processingFeeRepo = processingFeeRepo;
@@ -70,12 +73,11 @@ public class GameStoreServiceLayer {
         //Checks the item type and get the correct unit price
         //Check if we have enough quantity
         if (invoiceViewModel.getItemType().equals(CONSOLE_ITEM_TYPE)) {
-            Console tempCon = null;
-            Optional<Console> returnVal = consoleRepo.findById(invoiceViewModel.getItemId());
+            ConsoleViewModel tempCon = feignClient.getConsoleById(invoiceViewModel.getItemId());
+            //Optional<Console> returnVal = consoleRepo.findById(invoiceViewModel.getItemId());
+            //ConsoleViewModel returnVal = feignClient.getConsoleById(invoiceViewModel.getItemId());
 
-            if (returnVal.isPresent()) {
-                tempCon = returnVal.get();
-            } else {
+            if (tempCon == null) {
                 throw new IllegalArgumentException("Requested item is unavailable.");
             }
 
@@ -86,12 +88,9 @@ public class GameStoreServiceLayer {
             invoice.setUnitPrice(tempCon.getPrice());
 
         } else if (invoiceViewModel.getItemType().equals(GAME_ITEM_TYPE)) {
-            Game tempGame = null;
-            Optional<Game> returnVal = gameRepo.findById(invoiceViewModel.getItemId());
+            GameViewModel tempGame = feignClient.getGameById(invoiceViewModel.getItemId());
 
-            if (returnVal.isPresent()) {
-                tempGame = returnVal.get();
-            } else {
+            if (tempGame == null) {
                 throw new IllegalArgumentException("Requested item is unavailable.");
             }
 
@@ -101,12 +100,9 @@ public class GameStoreServiceLayer {
             invoice.setUnitPrice(tempGame.getPrice());
 
         } else if (invoiceViewModel.getItemType().equals(TSHIRT_ITEM_TYPE)) {
-            TShirt tempTShirt = null;
-            Optional<TShirt> returnVal = tShirtRepo.findById(invoiceViewModel.getItemId());
+            TShirtViewModel tempTShirt = feignClient.getTShirtById(invoiceViewModel.getItemId());
 
-            if (returnVal.isPresent()) {
-                tempTShirt = returnVal.get();
-            } else {
+            if (tempTShirt == null) {
                 throw new IllegalArgumentException("Requested item is unavailable.");
             }
 
@@ -168,6 +164,8 @@ public class GameStoreServiceLayer {
         if ((invoice.getTotal().compareTo(MAX_INVOICE_TOTAL) > 0)) {
             throw new IllegalArgumentException("Subtotal exceeds maximum purchase price of $999.99");
         }
+
+        System.out.println(invoice);
 
         invoice = invoiceRepo.save(invoice);
 

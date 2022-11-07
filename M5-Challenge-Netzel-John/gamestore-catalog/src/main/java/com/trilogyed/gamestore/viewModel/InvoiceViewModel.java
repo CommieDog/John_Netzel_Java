@@ -1,4 +1,4 @@
-package com.company.gamestoreinvoicing.viewModel;
+package com.trilogyed.gamestore.viewModel;
 
 import javax.validation.constraints.*;
 import java.math.BigDecimal;
@@ -184,25 +184,5 @@ public class InvoiceViewModel {
         return Objects.hash(getId(), getName(), getStreet(), getCity(), getState(), getZipcode(),
                 getItemType(), getItemId(), getUnitPrice(), getQuantity(), getSubtotal(), getTax(),
                 getProcessingFee(), getTotal());
-    }
-
-    @Override
-    public String toString() {
-        return "InvoiceViewModel{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", street='" + street + '\'' +
-                ", city='" + city + '\'' +
-                ", state='" + state + '\'' +
-                ", zipcode='" + zipcode + '\'' +
-                ", itemType='" + itemType + '\'' +
-                ", itemId=" + itemId +
-                ", unitPrice=" + unitPrice +
-                ", quantity=" + quantity +
-                ", subtotal=" + subtotal +
-                ", tax=" + tax +
-                ", processingFee=" + processingFee +
-                ", total=" + total +
-                '}';
     }
 }

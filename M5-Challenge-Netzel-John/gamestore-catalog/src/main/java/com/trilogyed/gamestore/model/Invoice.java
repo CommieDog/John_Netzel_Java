@@ -1,4 +1,4 @@
-package com.company.gamestoreinvoicing.model;
+package com.trilogyed.gamestore.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -168,25 +168,5 @@ public class Invoice {
         return Objects.hash(getId(), getName(), getStreet(), getCity(), getState(), getZipcode(),
                 getItemType(), getItemId(), getUnitPrice(), getQuantity(), getSubtotal(), getTax(),
                 getProcessingFee(), getTotal());
-    }
-
-    @Override
-    public String toString() {
-        return "Invoice{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", street='" + street + '\'' +
-                ", city='" + city + '\'' +
-                ", state='" + state + '\'' +
-                ", zipcode='" + zipcode + '\'' +
-                ", itemType='" + itemType + '\'' +
-                ", itemId=" + itemId +
-                ", unitPrice=" + unitPrice +
-                ", quantity=" + quantity +
-                ", subtotal=" + subtotal +
-                ", tax=" + tax +
-                ", processingFee=" + processingFee +
-                ", total=" + total +
-                '}';
     }
 }

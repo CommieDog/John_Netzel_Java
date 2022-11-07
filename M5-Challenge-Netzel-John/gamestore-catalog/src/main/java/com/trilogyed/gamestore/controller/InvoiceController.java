@@ -1,7 +1,7 @@
-package com.company.gamestoreinvoicing.controller;
+package com.trilogyed.gamestore.controller;
 
-import com.company.gamestoreinvoicing.service.GameStoreServiceLayer;
-import com.company.gamestoreinvoicing.viewModel.InvoiceViewModel;
+import com.trilogyed.gamestore.service.GameStoreServiceLayer;
+import com.trilogyed.gamestore.viewModel.InvoiceViewModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -25,7 +25,6 @@ public class InvoiceController {
     @ResponseStatus(HttpStatus.CREATED)
     public InvoiceViewModel purchaseItem(@RequestBody @Valid InvoiceViewModel invoiceViewModel) {
         invoiceViewModel = service.createInvoice(invoiceViewModel);
-        System.out.println("WOW!");
         return invoiceViewModel;
     }
 
