@@ -1,13 +1,18 @@
 package com.company.gamestoreinvoicing.service;
 
+import com.company.gamestoreinvoicing.controller.CatalogFeignClient;
 import com.company.gamestoreinvoicing.model.*;
 import com.company.gamestoreinvoicing.repository.InvoiceRepository;
 import com.company.gamestoreinvoicing.repository.ProcessingFeeRepository;
 import com.company.gamestoreinvoicing.repository.TaxRepository;
+import com.company.gamestoreinvoicing.viewModel.ConsoleViewModel;
+import com.company.gamestoreinvoicing.viewModel.GameViewModel;
 import com.company.gamestoreinvoicing.viewModel.InvoiceViewModel;
+import com.company.gamestoreinvoicing.viewModel.TShirtViewModel;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -22,34 +27,26 @@ import static org.mockito.Mockito.*;
 @RunWith(SpringRunner.class)
 public class GameStoreServiceLayerTest {
 
-    JpaRepository<Console, Long> consoleRepository;
-    JpaRepository<Game, Long> gameRepository;
-    JpaRepository<TShirt, Long> tShirtRepository;
     InvoiceRepository invoiceRepository;
     ProcessingFeeRepository processingFeeRepository;
     TaxRepository taxRepository;
     GameStoreServiceLayer service;
+
+    CatalogFeignClient feignClient;
 
     @Before
     public void setUp() throws Exception {
         setUpInvoiceRepositoryMock();
         setUpProcessingFeeRepositoryMock();
         setUpTaxRepositoryMock();
+        sutUpFeignClientMock();
 
-        service = new GameStoreServiceLayer(invoiceRepository, taxRepository, processingFeeRepository);
+        service = new GameStoreServiceLayer(invoiceRepository, taxRepository, processingFeeRepository, feignClient);
     }
 
     //Testing Invoice Operations...
     @Test
     public void shouldCreateFindInvoice() {
-        //TODO Uncomment?
-//        TShirtViewModel tShirt = new TShirtViewModel();
-//        tShirt.setSize("Medium");
-//        tShirt.setColor("Blue");
-//        tShirt.setDescription("V-Neck");
-//        tShirt.setPrice(new BigDecimal("19.99"));
-//        tShirt.setQuantity(5);
-//        tShirt = service.createTShirt(tShirt);
 
         InvoiceViewModel invoiceViewModel = new InvoiceViewModel();
         invoiceViewModel.setName("John Jake");
@@ -60,7 +57,6 @@ public class GameStoreServiceLayerTest {
         invoiceViewModel.setItemType("T-Shirt");
         invoiceViewModel.setItemId(54);
         invoiceViewModel.setQuantity(2);
-
         invoiceViewModel = service.createInvoice(invoiceViewModel);
 
         InvoiceViewModel ivmfromService = service.getInvoice(invoiceViewModel.getId());
@@ -131,15 +127,6 @@ public class GameStoreServiceLayerTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void shouldFailCreateFindInvoiceWithBadState() {
-        //TODO Uncomment?
-//        TShirtViewModel tShirt = new TShirtViewModel();
-//        tShirt.setId(99);
-//        tShirt.setSize("Small");
-//        tShirt.setColor("Red");
-//        tShirt.setDescription("sleeveless");
-//        tShirt.setPrice(new BigDecimal("400"));
-//        tShirt.setQuantity(30);
-
         InvoiceViewModel invoiceViewModel = new InvoiceViewModel();
         invoiceViewModel.setName("John Jake");
         invoiceViewModel.setStreet("street");
@@ -159,15 +146,6 @@ public class GameStoreServiceLayerTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void shouldFailCreateFindInvoiceWithBadItemType() {
-        //TODO Uncomment?
-//        TShirtViewModel tShirt = new TShirtViewModel();
-//        tShirt.setSize("Medium");
-//        tShirt.setColor("Blue");
-//        tShirt.setDescription("V-Neck");
-//        tShirt.setPrice(new BigDecimal("19.99"));
-//        tShirt.setQuantity(5);
-//        tShirt = service.createTShirt(tShirt);
-
         InvoiceViewModel invoiceViewModel = new InvoiceViewModel();
         invoiceViewModel.setName("John Jake");
         invoiceViewModel.setStreet("street");
@@ -187,14 +165,6 @@ public class GameStoreServiceLayerTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void shouldFailCreateFindInvoiceWithNoInventory() {
-        //TODO Uncomment?
-//        TShirtViewModel tShirt = new TShirtViewModel();
-//        tShirt.setSize("Medium");
-//        tShirt.setColor("Blue");
-//        tShirt.setDescription("V-Neck");
-//        tShirt.setPrice(new BigDecimal("19.99"));
-//        tShirt.setQuantity(5);
-//        tShirt = service.createTShirt(tShirt);
 
         InvoiceViewModel invoiceViewModel = new InvoiceViewModel();
         invoiceViewModel.setName("John Jake");
@@ -205,6 +175,12 @@ public class GameStoreServiceLayerTest {
         invoiceViewModel.setItemType("T-Shirt");
         invoiceViewModel.setItemId(54);
         invoiceViewModel.setQuantity(6);
+        invoiceViewModel.setUnitPrice(new BigDecimal("19.99"));
+        invoiceViewModel.setQuantity(2);
+        invoiceViewModel.setSubtotal(new BigDecimal("39.98"));
+        invoiceViewModel.setTax(new BigDecimal("2"));
+        invoiceViewModel.setProcessingFee(new BigDecimal("1.98"));
+        invoiceViewModel.setTotal(new BigDecimal("43.96"));
 
         invoiceViewModel = service.createInvoice(invoiceViewModel);
 
@@ -398,5 +374,48 @@ public class GameStoreServiceLayerTest {
         doReturn(Optional.of(taxNC)).when(taxRepository).findById("NC");
         doReturn(Optional.of(taxNY)).when(taxRepository).findById("NY");
 
+    }
+
+    private void sutUpFeignClientMock() {
+        feignClient = mock(CatalogFeignClient.class);
+
+        GameViewModel testGame = new GameViewModel();
+        testGame.setId(1L);
+        testGame.setTitle("Bonestorm");
+        testGame.setEsrbRating("T");
+        testGame.setDescription("Description");
+        testGame.setPrice(new BigDecimal("59.99"));
+        testGame.setStudio("FunSoft");
+        testGame.setQuantity(50L);
+
+        ConsoleViewModel testConsole = new ConsoleViewModel();
+        testGame.setId(1L);
+        testConsole.setModel("PlayBox");
+        testConsole.setManufacturer("Microsony");
+        testConsole.setMemoryAmount("128 MB");
+        testConsole.setProcessor("FastChip 8080");
+        testConsole.setPrice(new BigDecimal("299.99"));
+        testConsole.setQuantity(5L);
+
+        TShirtViewModel testTShirt1 = new TShirtViewModel();
+        testGame.setId(54L);
+        testTShirt1.setSize("XL");
+        testTShirt1.setColor("Red");
+        testTShirt1.setDescription("A Nice Shirt");
+        testTShirt1.setPrice(new BigDecimal("8.99"));
+        testTShirt1.setQuantity(6L);
+
+        TShirtViewModel testTShirt2 = new TShirtViewModel();
+        testGame.setId(1L);
+        testTShirt2.setSize("Medium");
+        testTShirt2.setColor("Blue");
+        testTShirt2.setDescription("V-Neck");
+        testTShirt2.setPrice(new BigDecimal("19.99"));
+        testTShirt2.setQuantity(5);
+
+        doReturn(testGame).when(feignClient).getGameById(1L);
+        doReturn(testConsole).when(feignClient).getConsoleById(1L);
+        doReturn(testTShirt1).when(feignClient).getTShirtById(54L);
+        doReturn(testTShirt2).when(feignClient).getTShirtById(1L);
     }
 }

@@ -1,4 +1,4 @@
-package com.company.gamestoreinvoicing.controller;
+package com.company.gamestoreinvoicing.feign;
 
 import com.company.gamestoreinvoicing.viewModel.ConsoleViewModel;
 import com.company.gamestoreinvoicing.viewModel.GameViewModel;
