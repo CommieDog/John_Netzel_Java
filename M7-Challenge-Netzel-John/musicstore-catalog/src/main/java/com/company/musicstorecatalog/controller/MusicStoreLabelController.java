@@ -25,7 +25,6 @@ public class MusicStoreLabelController {
 
     @PostMapping
     public Label createLabel(@RequestBody Label label) {
-        System.out.println(label);
         return labelRepo.save(label);
     }
 
