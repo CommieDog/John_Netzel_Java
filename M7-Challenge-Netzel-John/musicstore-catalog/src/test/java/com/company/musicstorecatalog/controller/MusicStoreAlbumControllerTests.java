@@ -48,14 +48,14 @@ public class MusicStoreAlbumControllerTests {
         album1Output.setAlbumId(1);
         album1Output.setTitle("Album 1");
         album1Output.setArtistId(1);
-        album1Input.setReleaseDate(LocalDate.of(2022, 1, 1));
+        album1Output.setReleaseDate(LocalDate.of(2022, 1, 1));
         album1Output.setLabelId(1);
         album1Output.setListPrice(new BigDecimal("9.99"));
 
         album2Input = new Album();
         album2Input.setTitle("Album 2");
         album2Input.setArtistId(2);
-        album1Input.setReleaseDate(LocalDate.of(2022, 1, 2));
+        album2Input.setReleaseDate(LocalDate.of(2022, 1, 2));
         album2Input.setLabelId(1);
         album2Input.setListPrice(new BigDecimal("19.99"));
 
@@ -63,7 +63,7 @@ public class MusicStoreAlbumControllerTests {
         album2Output.setAlbumId(2);
         album2Output.setTitle("Album 2");
         album2Output.setArtistId(2);
-        album1Input.setReleaseDate(LocalDate.of(2022, 1, 2));
+        album2Output.setReleaseDate(LocalDate.of(2022, 1, 2));
         album2Output.setLabelId(1);
         album2Output.setListPrice(new BigDecimal("19.99"));
 
