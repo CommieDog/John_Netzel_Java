@@ -1,7 +1,7 @@
 package com.company.musicstorerecommendations.controller;
 
 import com.company.musicstorerecommendations.model.LabelRecommendation;
-import com.company.musicstorerecommendations.repository.LabelRepository;
+import com.company.musicstorerecommendations.repository.LabelRecommendationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -11,9 +11,9 @@ import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping(value = "/label")
-public class MusicStoreLabelController {
+public class MusicStoreLabelRecommendationController {
     @Autowired
-    private LabelRepository labelRepo;
+    private LabelRecommendationRepository labelRepo;
 
     @GetMapping
     public List<LabelRecommendation> getAllLabels() {

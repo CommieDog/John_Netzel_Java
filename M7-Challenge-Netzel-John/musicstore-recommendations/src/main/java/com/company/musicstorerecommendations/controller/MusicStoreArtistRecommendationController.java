@@ -1,7 +1,7 @@
 package com.company.musicstorerecommendations.controller;
 
 import com.company.musicstorerecommendations.model.ArtistRecommendation;
-import com.company.musicstorerecommendations.repository.ArtistRepository;
+import com.company.musicstorerecommendations.repository.ArtistRecommendationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -11,9 +11,9 @@ import java.util.NoSuchElementException;
 
 @RestController
 @RequestMapping(value = "/artist")
-public class MusicStoreArtistController {
+public class MusicStoreArtistRecommendationController {
     @Autowired
-    private ArtistRepository artistRepo;
+    private ArtistRecommendationRepository artistRepo;
 
     @GetMapping
     public List<ArtistRecommendation> getAllLabels() {
