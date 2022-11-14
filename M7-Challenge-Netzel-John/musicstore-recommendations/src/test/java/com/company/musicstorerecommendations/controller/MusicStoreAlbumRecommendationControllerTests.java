@@ -13,8 +13,6 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -26,7 +24,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(MusicStoreAlbumRecommendationController.class)
-public class MusicStoreAlbumControllerTests {
+public class MusicStoreAlbumRecommendationControllerTests {
     @Autowired
     private MockMvc mockMvc;
 

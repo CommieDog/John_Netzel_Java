@@ -24,7 +24,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(MusicStoreLabelRecommendationController.class)
-public class MusicStoreLabelControllerTests {
+public class MusicStoreLabelRecommendationControllerTests {
     @Autowired
     private MockMvc mockMvc;
 

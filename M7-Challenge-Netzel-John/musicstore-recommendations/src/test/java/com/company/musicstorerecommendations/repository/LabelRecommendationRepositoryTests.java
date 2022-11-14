@@ -18,7 +18,7 @@ import static org.junit.Assert.assertFalse;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
-public class LabelRepositoryTests {
+public class LabelRecommendationRepositoryTests {
     @Autowired
     private LabelRecommendationRepository repository;
 

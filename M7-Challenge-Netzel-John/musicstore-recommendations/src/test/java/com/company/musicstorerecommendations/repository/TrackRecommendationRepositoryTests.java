@@ -18,7 +18,7 @@ import static org.junit.Assert.assertFalse;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
-public class TrackRepositoryTests {
+public class TrackRecommendationRepositoryTests {
     @Autowired
     private TrackRecommendationRepository repository;
 
